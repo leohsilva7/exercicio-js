@@ -11,13 +11,20 @@ document.body.appendChild(mensagem);
 
 botao.addEventListener('click', () => {
     const palpite = Number(input.value);
-    tentativas++;
+    
 
-    if (palpite < numeroGerado) {
+    if (isNaN(palpite) || palpite < 1 || palpite > 10) {
+        mensagem.textContent = 'Por favor, insira um número válido entre 1 e 10.';
+        return;
+    }
+    else if (palpite < numeroGerado) {
+        tentativas++;
         mensagem.textContent = 'Tente um número maior';
     } else if (palpite > numeroGerado) {
+        tentativas++;
         mensagem.textContent = 'Tente um número menor';
     } else {
+        tentativas++;
         mensagem.textContent = `Parabéns! Você acertou o número ${numeroGerado} em ${tentativas} tentativa(s).`;
     }
 
